@@ -1117,7 +1117,7 @@ static int apr_debug_init(void)
 static int apr_debug_init(void)
 (
 	return 0;
-)
+}
 #endif
 
 static void apr_cleanup(void)
