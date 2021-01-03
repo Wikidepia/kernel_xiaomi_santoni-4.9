@@ -1036,7 +1036,7 @@ static int fts_read_file(char *file_name, u8 **file_buf,
 		return -EINVAL;
 	}
 
-	ret = firmware_request_nowarn(&fw, file_name, upg->ts_data->dev);
+	ret = request_firmware(&fw, file_name, upg->ts_data->dev);
 	if (ret) {
 		FTS_INFO("firmware(%s) request fail,ret=%d", file_name, ret);
 		return ret;

@@ -1721,6 +1721,7 @@ static int fts_ts_resume(struct device *dev)
 /*****************************************************************************
 * TP Driver
 *****************************************************************************/
+#ifndef CONFIG_MACH_XIAOMI_SANTONI
 static int fts_ts_check_dt(struct device_node *np)
 {
 	int i;
@@ -1744,7 +1745,7 @@ static int fts_ts_check_dt(struct device_node *np)
 
 	return -ENODEV;
 }
-
+#endif
 static int fts_ts_check_default_tp(struct device_node *dt, const char *prop)
 {
 	const char **active_tp = NULL;
@@ -1803,6 +1804,7 @@ static int fts_ts_probe(struct i2c_client *client,
 		return -ENODEV;
 	}
 
+#ifndef CONFIG_MACH_XIAOMI_SANTONI
 	if (fts_ts_check_dt(dp)) {
 		if (!fts_ts_check_default_tp(dp, "qcom,i2c-touch-active"))
 			ret = -EPROBE_DEFER;
@@ -1811,7 +1813,7 @@ static int fts_ts_probe(struct i2c_client *client,
 
 		return ret;
 	}
-
+#endif
 	/* malloc memory for global struct variable */
 	ts_data = kzalloc(sizeof(*ts_data), GFP_KERNEL);
 	if (!ts_data) {
