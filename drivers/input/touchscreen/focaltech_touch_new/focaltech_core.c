@@ -1465,11 +1465,13 @@ static int fts_ts_probe_entry(struct fts_ts_data *ts_data)
 	fts_reset_proc(200);
 #endif
 
+#ifndef CONFIG_MACH_XIAOMI_SANTONI
 	ret = fts_get_ic_information(ts_data);
 	if (ret) {
 		FTS_ERROR("not focal IC, unregister driver");
 		goto err_irq_req;
 	}
+#endif
 
 	ret = fts_create_apk_debug_channel(ts_data);
 	if (ret) {
